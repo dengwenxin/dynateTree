@@ -1,12 +1,10 @@
-package jp.microad.digitalSignage.utility;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jp.microad.digitalSignage.constant.CommonConst;
-import jp.microad.digitalSignage.model.Node;
+import jp.microad.model.Node;
 
 public class DynatreeUtil {
 
@@ -18,10 +16,9 @@ public class DynatreeUtil {
 
     @SuppressWarnings("unchecked")
     /**
-     * ツリーリストをハッシュ(親ノードをキーとして)に変換
-     * 子ノードを速めに探す用
-     * @param treeList ツリーリスト
-     * @return ハッシュ
+     * 
+     * @param treeList 
+     * @return 
      */
     private HashMap<String, Object> convertTreeListToHash(List<Node> nodeList) {
         HashMap<String, Object> hash = new HashMap<String, Object>();
@@ -42,13 +39,13 @@ public class DynatreeUtil {
     }
 
     /**
-     * 親ノードより、子ノードがあるかを判断
+     * 判断是否有子节点
      * 
-     * @param parentId 親ノード
-     * @return 子ノードがあるか
+     * @param parentId 
+     * @return 子节点
      */
     private boolean hasChild(int parentId) {
-        // 最後の階層
+        // 最后的一层
         if (getChildList(parentId) == null) {
             return false;
         }
@@ -57,7 +54,7 @@ public class DynatreeUtil {
 
     @SuppressWarnings("unchecked")
     /**
-     * 親ノードより、子ノードリストを取得
+     * 取得字节点
      * @param parentId 親ノード
      * @return 子ノードリスト
      */
@@ -66,10 +63,10 @@ public class DynatreeUtil {
     }
 
     /**
-     * 親ノードより、最後の階層までのノードを取得
+     *  递归取得父节点的所有字节点
      * 
      * @param parentId 親ノード
-     * @return 親ノードに紐づくすべてのノード
+     * @return 父节点的所有字节点
      */
     public List<Map<String, Object>> recurse(int parentId) {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -90,7 +87,7 @@ public class DynatreeUtil {
     }
 
     /**
-     * Dynatree用のストラクトのデータを取得
+     * Dynatree用的结构
      * 
      * @return Dynatree用のストラクトのデータ
      */
@@ -155,7 +152,7 @@ public class DynatreeUtil {
                 }
             }
             Dynatree dynatree = new Dynatree(geoList);
-            List<Map<String, Object>> treeStructList = dynatree.getTreeStructList();
+            List<Map<String, Object>> treeStructList = dynatree.getTreeStructData();
             if(treeStructList.size() > 0)
                 map.put("children", treeStructList);
             
