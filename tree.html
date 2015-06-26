@@ -1,0 +1,61 @@
+<html>
+<head>
+
+<!-- <script src="http://code.jquery.com/jquery-latest.js"></script>  -->
+<script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script>
+function myFunction()
+{
+    var treeData = [{title: "USA", key: "1",
+                        children: [
+                            {title: "Texas", key: "20",
+                                children: [
+                                    {title: "Dallas", key: "2003" },
+                                    {title: "SA", key: "2004"}
+                                 ]
+                            }
+                        ]
+                },
+                {title: "CHINA", key: "3",
+                    children: [{
+                        title: "LIAONING",key: "30",
+                            children: [{
+                                title: "SHENYANG",key: "3001"
+                                 }
+                            ]
+                        }
+                    ]
+                }    
+            ];
+var x = getTreeNameforDisplay(treeData);
+
+for (i=0;i<x.length;i++)
+{
+document.write(x[i] + "<br>");
+//$("#demo").html(x[i] + "<br>");
+}
+}
+function getTreeNameforDisplay(treeData ) {
+    var arr = [];
+    $.each(treeData , function(n, value) {
+        arr.push(value.title);
+        if (value.children != null) {
+            var childArr = getTreeNameforDisplay(value.children);
+            $.each(childArr, function(n, title) {
+                arr.push(title);
+            });
+        }
+    });
+    return arr;
+}
+</script>
+</head>
+<body>
+
+<p>遍历JSON。</p>
+
+<button onclick="myFunction()">点击这里</button>
+
+<p id="demo"></p>
+</body>
+</html>
